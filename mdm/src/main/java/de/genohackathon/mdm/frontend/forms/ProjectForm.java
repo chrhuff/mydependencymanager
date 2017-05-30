@@ -2,10 +2,7 @@ package de.genohackathon.mdm.frontend.forms;
 
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.genohackathon.mdm.dao.ProjectService;
 import de.genohackathon.mdm.frontend.MdmUI;
@@ -21,8 +18,11 @@ public class ProjectForm extends FormLayout {
     private Button save = new Button("Save");
 
     private Binder<Project> binder = new Binder<>(Project.class);
+    private Project project;
+    private final MdmUI ui;
 
     public ProjectForm(MdmUI ui) {
+        this.ui = ui;
         setSizeUndefined();
         HorizontalLayout buttons = new HorizontalLayout(save);
         addComponents(name, buttons);
@@ -37,6 +37,14 @@ public class ProjectForm extends FormLayout {
 
     private void save() {
         this.projectService.create(name.getValue());
-        setVisible(false);
+        ui.updateList();
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+        binder.setBean(project);
+
+        setVisible(true);
+        name.selectAll();
     }
 }
