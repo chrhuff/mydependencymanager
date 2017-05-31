@@ -6,6 +6,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.genohackathon.mdm.dao.DataService;
 import de.genohackathon.mdm.frontend.MdmUI;
+import de.genohackathon.mdm.frontend.views.ProjectsView;
 import de.genohackathon.mdm.model.Employee;
 import de.genohackathon.mdm.model.Project;
 
@@ -38,9 +39,12 @@ public class ProjectForm extends FormLayout {
     private Binder<Project> binder = new Binder<>(Project.class);
     private Project project = null;
     private final MdmUI ui;
+    private final ProjectsView view;
+    Window popover;
 
-    public ProjectForm(MdmUI ui) {
+    public ProjectForm(MdmUI ui, ProjectsView view) {
         this.ui = ui;
+        this.view = view;
         HorizontalLayout main = new HorizontalLayout();
         HorizontalLayout buttons = new HorizontalLayout(save, del);
         addComponents(main, buttons);
@@ -64,16 +68,17 @@ public class ProjectForm extends FormLayout {
             this.projectService.delete(project);
             project = new Project();
         }
-        ui.updateList();
+        view.updateList();
+        view.closeWindow();
         name.setValue("");
     }
 
     private void save() {
         this.projectService.updateOrCreate(project);
-        ui.updateList();
+        view.updateList();
         name.setValue("");
         setVisible(false);
-        ui.closeWindow();
+        view.closeWindow();
     }
 
     public void setProject(Project project) {
@@ -83,5 +88,10 @@ public class ProjectForm extends FormLayout {
 
         setVisible(true);
         name.selectAll();
+        if (project.getId() == null) {
+            del.setVisible(false);
+        } else {
+            del.setVisible(true);
+        }
     }
 }

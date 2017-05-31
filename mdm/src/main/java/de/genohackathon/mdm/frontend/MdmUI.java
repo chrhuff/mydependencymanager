@@ -1,135 +1,65 @@
 package de.genohackathon.mdm.frontend;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.*;
-import de.genohackathon.mdm.dao.DataService;
-import de.genohackathon.mdm.frontend.forms.EmployeeForm;
-import de.genohackathon.mdm.frontend.forms.ProjectForm;
-import de.genohackathon.mdm.model.Employee;
-import de.genohackathon.mdm.model.Project;
-import org.apache.commons.lang3.StringUtils;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+import de.genohackathon.mdm.frontend.views.DashboardView;
+import de.genohackathon.mdm.frontend.views.EmployeesView;
+import de.genohackathon.mdm.frontend.views.ProjectsView;
 
 import javax.servlet.annotation.WebServlet;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by chuff on 30.05.2017.
  */
 public class MdmUI extends UI {
 
-    private DataService<Project> projectService = new DataService<>(Project.class);
-    private DataService<Employee> employeeDataService = new DataService<>(Employee.class);
+    Navigator navigator;
 
-    private ProjectForm projectForm = new ProjectForm(this);
-    private EmployeeForm employeeForm = new EmployeeForm(this);
-    private Grid<Project> grid = new Grid<>(Project.class);
-    private Grid<Employee> employees = new Grid<>(Employee.class);
+    View dashboardView = new DashboardView();
+    View employeesView = new EmployeesView(this);
+    View projectsView = new ProjectsView(this);
 
-    private TextField search = new TextField("Suche");
-
-    Window popover;
+    public void goTo(String viewName) {
+        navigator.navigateTo(viewName);
+    }
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
 
-        search.addValueChangeListener(e -> updateList());
+        final HorizontalLayout buttons = new HorizontalLayout();
+        Button homeButton = new Button("Start", e -> navigator.navigateTo(""));
+        Button projectsButton = new Button("Projekte", e -> navigator.navigateTo("projects"));
+        Button employeesButton = new Button("Mitarbeiter", e -> navigator.navigateTo("employees"));
 
-        Button addProjectBtn = new Button("Add new customer");
-        addProjectBtn.addClickListener(e -> {
-            grid.asSingleSelect().clear();
-            projectForm.setProject(new Project());
-            createPopover(projectForm);
-        });
+        buttons.addComponents(homeButton);
+        buttons.addComponents(projectsButton);
+        buttons.addComponents(employeesButton);
+        buttons.setMargin(false);
+        buttons.setSizeUndefined();
+        buttons.setWidth(100, Unit.PERCENTAGE);
+        buttons.addStyleName("geno-navbar");
 
-        Button addEmployeeBtn = new Button("Mitarbeiter hinzufügen");
-        addEmployeeBtn.addClickListener(e -> {
-            employees.asSingleSelect().clear();
-            employeeForm.setEmployee(new Employee());
-            createPopover(employeeForm);
-        });
+        final VerticalLayout main = new VerticalLayout();
+        main.setMargin(false);
+        final VerticalLayout verticalLayout = new VerticalLayout(buttons, main);
+        verticalLayout.setMargin(false);
 
-        grid.setColumns("name", "projectLeader");
-        employees.setColumns("firstName", "lastName");
+        navigator = new Navigator(this, main);
 
-        final VerticalLayout layout = new VerticalLayout();
+        navigator.addView("", dashboardView);
+        navigator.addView("projects", projectsView);
+        navigator.addView("employees", employeesView);
 
-        final VerticalLayout grids = new VerticalLayout(grid, employees);
-        HorizontalLayout main = new HorizontalLayout(grids);
-        
-        main.setSizeFull();
-        grid.setSizeFull();
-        main.setExpandRatio(grids, 1);
-
-        final HorizontalLayout buttonLayout = new HorizontalLayout(search, addProjectBtn, addEmployeeBtn);
-        buttonLayout.setSizeFull();
-
-        layout.addComponent(buttonLayout);
-        layout.addComponents(main);
-        layout.addComponents(addProjectBtn, main);
-
-        setContent(layout);
-
-        grid.asSingleSelect().addValueChangeListener(event -> {
-            if (event.getValue() == null) {
-                projectForm.setVisible(false);
-            } else {
-                projectForm.setProject(event.getValue());
-                projectForm.setVisible(true);
-                createPopover(projectForm);
-        }
-        });        
-        
-        employees.asSingleSelect().addValueChangeListener(event -> {
-            if (event.getValue() == null) {
-                employeeForm.setVisible(false);
-            } else {
-                employeeForm.setEmployee(event.getValue());
-                createPopover(employeeForm);
-            }
-        });
-        
-        updateList();
-        updateEmployees();
-    }
-
-    private void createPopover(Component component) {
-        popover = new Window();
-        popover.center();
-        popover.setPositionY(0);
-        popover.setResizable(false);
-        popover.setClosable(true);
-        popover.setModal(true);
-        popover.setVisible(true);
-        popover.setSizeUndefined();
-        popover.setContent(component);
-        component.setVisible(true);
-        addWindow(popover);
-    }
-    
-    public void closeWindow() {
-        if (popover != null) {
-            popover.close();
-            removeWindow(popover);
-            popover = null;
-        }
-    }
-
-    public void updateList() {
-        List<Project> projects;
-        if(StringUtils.isBlank(search.getValue())) {
-            projects = projectService.findAll();
-        }else{
-            projects = projectService.findFullText(search.getValue());
-        }
-        grid.setItems(projects);
-    }
-
-    public void updateEmployees() {
-        List<Employee> employees = employeeDataService.findAll();
-        this.employees.setItems(employees);
+        setContent(verticalLayout);
+        setNavigator(navigator);
+        setTheme("mytheme");
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

@@ -6,6 +6,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.genohackathon.mdm.dao.DataService;
 import de.genohackathon.mdm.frontend.MdmUI;
+import de.genohackathon.mdm.frontend.views.EmployeesView;
 import de.genohackathon.mdm.model.Employee;
 
 import java.io.FileNotFoundException;
@@ -51,10 +52,12 @@ public class EmployeeForm extends FormLayout {
 
     private Binder<Employee> binder = new Binder<>(Employee.class);
     private Employee employee = new Employee();
+    private final EmployeesView view;
     private final MdmUI ui;
 
-    public EmployeeForm(MdmUI ui) {
+    public EmployeeForm(MdmUI ui, EmployeesView view) {
         this.ui = ui;
+        this.view = view;
         setSpacing(true);
         setMargin(true);
         HorizontalLayout buttons = new HorizontalLayout(save,del);
@@ -75,16 +78,16 @@ public class EmployeeForm extends FormLayout {
             this.employeeDataService.delete(employee);
             employee = new Employee();
         }
-        ui.updateEmployees();
+        view.updateList();
         firstName.setValue("");
-        ui.closeWindow();
+        view.closeWindow();
     }
 
     private void save() {
         this.employeeDataService.updateOrCreate(employee);
         setVisible(false);
-        ui.updateEmployees();
-        ui.closeWindow();
+        view.updateList();
+        view.closeWindow();
     }
 
     public void setEmployee(Employee employee) {
@@ -93,5 +96,10 @@ public class EmployeeForm extends FormLayout {
 
         setVisible(true);
         firstName.selectAll();
+        if (employee.getId() == null) {
+            del.setVisible(false);
+        } else {
+            del.setVisible(true);
+        }
     }
 }
