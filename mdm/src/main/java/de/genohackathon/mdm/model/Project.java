@@ -1,14 +1,14 @@
 package de.genohackathon.mdm.model;
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.annotations.*;
+import org.mongodb.morphia.utils.IndexType;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity("project")
+@Indexes(@Index(fields = @Field(value = "$**", type = IndexType.TEXT)))
 public class Project implements DataObject {
 
     @Id

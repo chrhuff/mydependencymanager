@@ -9,8 +9,10 @@ import de.genohackathon.mdm.frontend.forms.EmployeeForm;
 import de.genohackathon.mdm.frontend.forms.ProjectForm;
 import de.genohackathon.mdm.model.Employee;
 import de.genohackathon.mdm.model.Project;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.annotation.WebServlet;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,10 +28,14 @@ public class MdmUI extends UI {
     private Grid<Project> grid = new Grid<>(Project.class);
     private Grid<Employee> employees = new Grid<>(Employee.class);
 
+    private TextField search = new TextField("Suche");
+
     Window popover;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+
+        search.addValueChangeListener(e -> updateList());
 
         Button addProjectBtn = new Button("Add new customer");
         addProjectBtn.addClickListener(e -> {
@@ -57,7 +63,7 @@ public class MdmUI extends UI {
         grid.setSizeFull();
         main.setExpandRatio(grids, 1);
 
-        final HorizontalLayout buttonLayout = new HorizontalLayout(addProjectBtn, addEmployeeBtn);
+        final HorizontalLayout buttonLayout = new HorizontalLayout(search, addProjectBtn, addEmployeeBtn);
         buttonLayout.setSizeFull();
 
         layout.addComponent(buttonLayout);
@@ -112,10 +118,15 @@ public class MdmUI extends UI {
     }
 
     public void updateList() {
-        List<Project> projects = projectService.findAll();
+        List<Project> projects;
+        if(StringUtils.isBlank(search.getValue())) {
+            projects = projectService.findAll();
+        }else{
+            projects = projectService.findFullText(search.getValue());
+        }
         grid.setItems(projects);
-    }    
-    
+    }
+
     public void updateEmployees() {
         List<Employee> employees = employeeDataService.findAll();
         this.employees.setItems(employees);

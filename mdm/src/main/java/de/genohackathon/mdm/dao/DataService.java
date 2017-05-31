@@ -55,6 +55,10 @@ public class DataService<T extends DataObject> {
         return datastore.find(typeClass).field("_id").equal(id).get();
     }
 
+    public List<T> findFullText(String text){
+        return datastore.find(typeClass).search(text).order("_id").asList();
+    }
+
     public void delete(T obj) {
         datastore.delete(obj);
     }

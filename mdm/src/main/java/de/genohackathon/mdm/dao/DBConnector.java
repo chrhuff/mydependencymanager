@@ -17,6 +17,12 @@ public class DBConnector {
             MongoClient mongo = new MongoClient("127.0.0.1");
             Datastore datastore = morphia.createDatastore(mongo, "MDM");
             datastore.ensureCaps();
+            morphia.map();
+            try {
+                datastore.ensureIndexes(true);
+            }catch(Exception e){
+                //every time, but works anyways
+            }
             
             instance = new DBConnector(datastore);
         }

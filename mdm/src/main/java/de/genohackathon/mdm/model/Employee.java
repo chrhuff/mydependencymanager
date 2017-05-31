@@ -2,8 +2,8 @@ package de.genohackathon.mdm.model;
 
 import com.vaadin.ui.Image;
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.*;
+import org.mongodb.morphia.utils.IndexType;
 
 import java.util.Set;
 
@@ -11,6 +11,7 @@ import java.util.Set;
  * Created by chuff on 30.05.2017.
  */
 @Entity("employee")
+@Indexes(@Index(fields = @Field(value = "$**", type = IndexType.TEXT)))
 public class Employee implements DataObject {
 
     @Id
