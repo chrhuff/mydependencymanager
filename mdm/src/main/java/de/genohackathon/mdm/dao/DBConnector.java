@@ -1,7 +1,6 @@
 package de.genohackathon.mdm.dao;
 
 import com.mongodb.MongoClient;
-import de.genohackathon.mdm.model.Employee;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
@@ -17,11 +16,7 @@ public class DBConnector {
             morphia.mapPackage("de.genohackathon.mdm.model");
             MongoClient mongo = new MongoClient("127.0.0.1");
             Datastore datastore = morphia.createDatastore(mongo, "MDM");
-
-            Employee dummyLeader = new Employee();
-            dummyLeader.setFirstName("Guy");
-            dummyLeader.setLastName("Inkognito");
-            datastore.save(dummyLeader);
+            datastore.ensureCaps();
             
             instance = new DBConnector(datastore);
         }

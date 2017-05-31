@@ -48,7 +48,7 @@ public class DataService<T extends DataObject> {
     }
 
     public T reload(T obj) {
-        return findById(obj.getId());
+        return datastore.get(obj);
     }
 
     public T findById(ObjectId id) {

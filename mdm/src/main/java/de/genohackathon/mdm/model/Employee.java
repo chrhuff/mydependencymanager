@@ -7,7 +7,7 @@ import org.mongodb.morphia.annotations.Id;
 /**
  * Created by chuff on 30.05.2017.
  */
-@Entity("project")
+@Entity("employee")
 public class Employee implements DataObject {
 
     @Id
