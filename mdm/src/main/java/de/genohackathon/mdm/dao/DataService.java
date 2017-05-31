@@ -52,7 +52,7 @@ public class DataService<T extends DataObject> {
     }
 
     public T findById(ObjectId id) {
-        return datastore.find(typeClass).field("id").equal(id).get();
+        return datastore.find(typeClass).field("_id").equal(id).get();
     }
 
     public void delete(T obj) {
