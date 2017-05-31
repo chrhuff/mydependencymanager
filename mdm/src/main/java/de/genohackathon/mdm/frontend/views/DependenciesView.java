@@ -84,6 +84,7 @@ public class DependenciesView extends VerticalLayout implements View {
         popover.setModal(true);
         popover.setVisible(true);
         popover.setSizeUndefined();
+        popover.setWidth(40, Unit.PERCENTAGE);
         popover.setContent(component);
         popover.addCloseListener(e -> {
             ui.goTo("dependencies");

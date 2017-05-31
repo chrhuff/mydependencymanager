@@ -92,6 +92,8 @@ public class ProjectsView extends VerticalLayout implements View {
         popover.setModal(true);
         popover.setVisible(true);
         popover.setContent(component);
+        popover.setSizeUndefined();
+        popover.setWidth(40, Unit.PERCENTAGE);
         popover.addCloseListener(e -> {
             ui.goTo("projects");
         });

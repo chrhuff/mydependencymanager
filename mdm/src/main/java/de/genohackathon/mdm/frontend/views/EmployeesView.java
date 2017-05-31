@@ -87,6 +87,7 @@ public class EmployeesView extends VerticalLayout implements View {
         popover.setModal(true);
         popover.setVisible(true);
         popover.setSizeUndefined();
+        popover.setWidth(25, Unit.PERCENTAGE);
         popover.setContent(component);
         component.setVisible(true);
         popover.addCloseListener(e -> {
