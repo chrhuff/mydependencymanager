@@ -69,10 +69,12 @@ public class MdmUI extends UI {
 
     public void reloadProjects() {
         dependenciesView.reloadProjects();
+        projectsView.updateList();
     }
 
     public void reloadEmployees() {
         projectsView.reloadEmployees();
+        employeesView.updateList();
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
