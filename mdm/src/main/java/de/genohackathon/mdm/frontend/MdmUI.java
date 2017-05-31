@@ -2,7 +2,6 @@ package de.genohackathon.mdm.frontend;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
@@ -10,7 +9,6 @@ import de.genohackathon.mdm.frontend.views.DashboardView;
 import de.genohackathon.mdm.frontend.views.DependenciesView;
 import de.genohackathon.mdm.frontend.views.EmployeesView;
 import de.genohackathon.mdm.frontend.views.ProjectsView;
-import de.genohackathon.mdm.model.Project;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -40,7 +38,7 @@ public class MdmUI extends UI {
         Button employeesButton = new Button("Mitarbeiter", e -> navigator.navigateTo("employees"));
         Button dependenciesButton = new Button("Abhängigkeiten", e -> navigator.navigateTo("dependencies"));
 
-        Label title = new Label("MyDependencyManager");
+        Label title = new Label("ProjektPartner");
         title.setStyleName("mdm-title");
         buttons.addComponents(title);
         buttons.addComponents(homeButton);
