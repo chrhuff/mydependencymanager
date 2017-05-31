@@ -1,7 +1,6 @@
-package de.genohackathon.mdm;
+package de.genohackathon.mdm.dao;
 
 import org.bson.BsonArray;
-import org.bson.BsonDocument;
 import org.bson.BsonString;
 import org.bson.Document;
 
@@ -11,7 +10,17 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 public class DBConnector {
-	
+
+	private static MongoDatabase db = null;
+
+	public static MongoDatabase getDB(){
+		if(db==null){
+			MongoClient mongo = new MongoClient("127.0.0.1");
+			db = mongo.getDatabase("MDM");
+		}
+		return db;
+	}
+
 	public static void main(String[] args) {
 		DBConnector DBC = new DBConnector();
 		DBC.create();
@@ -21,13 +30,8 @@ public class DBConnector {
 	private MongoCollection<Document> projects;
 	
 	public DBConnector(){
-		MongoClient mongo = new MongoClient("127.0.0.1");
-		MongoDatabase db = mongo.getDatabase("MDM");
-		try{
-			db.createCollection("Projects");
-		}catch(Exception e){
-			
-		}
+
+
 		projects = db.getCollection("Projects");
 	}
 	

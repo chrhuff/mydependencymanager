@@ -4,7 +4,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import de.genohackathon.mdm.dao.ProjectService;
+import de.genohackathon.mdm.dao.DataService;
 import de.genohackathon.mdm.frontend.forms.ProjectForm;
 import de.genohackathon.mdm.model.Project;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class MdmUI extends UI {
 
-    private ProjectService projectService = new ProjectService();
+    private DataService<Project> projectService = new DataService<Project>(Project.class);
 
     private ProjectForm form = new ProjectForm(this);
     private Grid<Project> grid = new Grid<>(Project.class);
@@ -31,7 +31,7 @@ public class MdmUI extends UI {
             grid.asSingleSelect().clear();
             form.setProject(new Project());
         });
-        
+
         grid.setColumns("id", "name");
 
         final VerticalLayout layout = new VerticalLayout();
@@ -41,6 +41,7 @@ public class MdmUI extends UI {
         grid.setSizeFull();
         main.setExpandRatio(grid, 1);
 
+        layout.addComponent(addProjectBtn);
         layout.addComponents(main);
 
         setContent(layout);
