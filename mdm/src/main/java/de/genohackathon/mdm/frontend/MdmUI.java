@@ -32,7 +32,7 @@ public class MdmUI extends UI {
             form.setProject(new Project());
         });
 
-        grid.setColumns("id", "name");
+        grid.setColumns("name", "projectLeader");
 
         final VerticalLayout layout = new VerticalLayout();
 

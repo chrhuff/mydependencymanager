@@ -1,19 +1,12 @@
 package de.genohackathon.mdm.dao;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import de.genohackathon.mdm.model.DataObject;
-import de.genohackathon.mdm.model.Project;
-import org.apache.commons.lang3.StringUtils;
 import org.bson.BsonDocument;
 import org.bson.BsonObjectId;
-import org.bson.BsonString;
-import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.query.Query;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,50 +14,35 @@ import java.util.List;
  */
 public class DataService<T extends DataObject> {
 
-    private MongoCollection<Document> collection;
-
     private Class<T> typeClass;
+
+    final Datastore datastore = DBConnector.getDB();
 
     public DataService(Class<T> type) {
         typeClass = type;
-        MongoDatabase db = DBConnector.getDB();
-        try {
-            db.createCollection(type.getName());
-        } catch (Exception e) {
-
-        }
-        collection = db.getCollection(type.getName());
     }
 
     public List<T> findAll() {
-        try {
-            T obj = typeClass.newInstance();
-            ArrayList list = new ArrayList<T>();
-            for (Document doc : collection.find()) {
-                list.add(obj.fromDocument(doc));
-            }
-            return list;
-        }catch (InstantiationException|IllegalAccessException e){
-            return Collections.emptyList();
-        }
+        final Query<T> query = datastore.createQuery(typeClass);
+        return query.asList();
     }
 
     public void create(T obj) {
-        collection.insertOne(obj.toDocument());
+        datastore.save(obj);
     }
 
     public void update(T obj) {
-        collection.findOneAndReplace(getIdFilter(obj.getId()), obj.toDocument());
+        datastore.save(obj);
     }
 
     public void updateOrCreate(T obj) {
-        if (StringUtils.isBlank(obj.getId())) {
+        if (obj.getId() == null) {
             create(obj);
             return;
         }
-        if (reload(obj)!=null){
+        if (reload(obj) != null) {
             update(obj);
-        }else{
+        } else {
             create(obj);
         }
     }
@@ -73,38 +51,13 @@ public class DataService<T extends DataObject> {
         return findById(obj.getId());
     }
 
-    public T findById(String id){
-        try {
-            T obj = typeClass.newInstance();
-            return (T) obj.fromDocument(collection.find(getIdFilter(id)).first());
-        }catch (InstantiationException|IllegalAccessException e){
-            return null;
-        }
+    public T findById(ObjectId id) {
+        return datastore.find(typeClass).field("id").equal(id).get();
     }
 
     public void delete(T obj) {
-        collection.findOneAndDelete(getIdFilter(obj.getId()));
+        datastore.delete(obj);
     }
-
-//    private Document toDocument(Project project) {
-//        if (project == null) return null;
-//        Document doc = new Document();
-//        doc.put("name", new BsonString(project.getName()));
-//        if (StringUtils.isNotBlank(project.getId())) {
-//            doc.put("_id", new BsonObjectId(new ObjectId(project.getId())));
-//        }
-//        return doc;
-//    }
-//
-//    private Project toProject(Document document) {
-//        if (document == null) {
-//            return null;
-//        }
-//        Project project = new Project();
-//        project.setName(document.getString("name"));
-//        project.setId(document.getObjectId("_id").toString());
-//        return project;
-//    }
 
     private BsonDocument getIdFilter(String id) {
         BsonDocument filter = new BsonDocument();

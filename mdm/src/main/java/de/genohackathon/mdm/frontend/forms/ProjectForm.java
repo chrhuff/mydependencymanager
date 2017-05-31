@@ -2,13 +2,11 @@ package de.genohackathon.mdm.frontend.forms;
 
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.genohackathon.mdm.dao.DataService;
 import de.genohackathon.mdm.frontend.MdmUI;
+import de.genohackathon.mdm.model.Employee;
 import de.genohackathon.mdm.model.Project;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,9 +16,11 @@ import org.apache.commons.lang3.StringUtils;
 public class ProjectForm extends FormLayout {
 
     private DataService<Project> projectService = new DataService<>(Project.class);
-    private TextField name = new TextField("Project name");
-    private Button save = new Button("Save");
-    private Button del = new Button("Delete");
+    private DataService<Employee> employeeDataService = new DataService<>(Employee.class);
+    private TextField name = new TextField("Projektname");
+    private NativeSelect<Employee> projectLeader = new NativeSelect<>("Projektleiter");
+    private Button save = new Button("Sichern");
+    private Button del = new Button("Löschen");
 
     private Binder<Project> binder = new Binder<>(Project.class);
     private Project project = null;
@@ -30,7 +30,9 @@ public class ProjectForm extends FormLayout {
         this.ui = ui;
         setSizeUndefined();
         HorizontalLayout buttons = new HorizontalLayout(save,del);
-        addComponents(name, buttons);
+        addComponents(name, projectLeader, buttons);
+        
+        projectLeader.setItems(employeeDataService.findAll());
         
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
@@ -42,7 +44,7 @@ public class ProjectForm extends FormLayout {
     }
 
     private void del() {
-        if(StringUtils.isNotBlank(project.getId())) {
+        if(project.getId() != null) {
             this.projectService.delete(project);
             project = new Project();
         }

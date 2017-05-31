@@ -1,59 +1,34 @@
 package de.genohackathon.mdm.dao;
 
-import org.bson.BsonArray;
-import org.bson.BsonString;
-import org.bson.Document;
-
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import de.genohackathon.mdm.model.Employee;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 
 public class DBConnector {
 
-	private static MongoDatabase db = null;
+    private Datastore db = null;
+    
+    private static DBConnector instance = null;
 
-	public static MongoDatabase getDB(){
-		if(db==null){
-			MongoClient mongo = new MongoClient("127.0.0.1");
-			db = mongo.getDatabase("MDM");
-		}
-		return db;
-	}
+    public static Datastore getDB() {
+        if (instance == null) {
+            Morphia morphia = new Morphia();
+            morphia.mapPackage("de.genohackathon.mdm.model");
+            MongoClient mongo = new MongoClient("127.0.0.1");
+            Datastore datastore = morphia.createDatastore(mongo, "MDM");
 
-	public static void main(String[] args) {
-		DBConnector DBC = new DBConnector();
-		DBC.create();
-		DBC.read();
-	}
-	
-	private MongoCollection<Document> projects;
-	
-	public DBConnector(){
+            Employee dummyLeader = new Employee();
+            dummyLeader.setFirstName("Guy");
+            dummyLeader.setLastName("Inkognito");
+            datastore.save(dummyLeader);
+            
+            instance = new DBConnector(datastore);
+        }
+        return instance.db;
+    }
 
-
-		projects = db.getCollection("Projects");
-	}
-	
-	public void create(){
-		Document doc = new Document();
-		doc.append("Name", new BsonString("Test2"));
-		BsonArray skills = new BsonArray();
-		skills.add(new BsonString("SkillA"));
-		skills.add(new BsonString("SkillB"));
-//		skills.add(new BsonString("SkillC"));
-		doc.append("Skills", skills);
-		projects.insertOne(doc);
-	}
-	
-	public void read(){
-		Document filter = new Document();
-		filter.append("Skills", "SkillC");
-//		filter.append("Skills", "SkillC");
-		System.out.println(projects.count());
-		FindIterable<Document> found = projects.find(filter);
-		for(Document d : found){
-			System.out.println(d.toString());
-		}
-	}
+    private DBConnector(Datastore db) {
+        this.db = db;
+    }
 }
