@@ -5,7 +5,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Reference;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity("project")
@@ -19,11 +19,11 @@ public class Project implements DataObject {
     @Reference
     private Employee projectLeader;
     
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String resultType;
-    private Integer resources;
-    private Integer budget;
+    private Double resources;
+    private Double budget;
     private String businessCase;
     private String channel;
     private String customerType;
@@ -65,19 +65,20 @@ public class Project implements DataObject {
         this.projectLeader = projectLeader;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
+
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -89,19 +90,19 @@ public class Project implements DataObject {
         this.resultType = resultType;
     }
 
-    public Integer getResources() {
+    public Double getResources() {
         return resources;
     }
 
-    public void setResources(Integer resources) {
+    public void setResources(Double resources) {
         this.resources = resources;
     }
 
-    public Integer getBudget() {
+    public Double getBudget() {
         return budget;
     }
 
-    public void setBudget(Integer budget) {
+    public void setBudget(Double budget) {
         this.budget = budget;
     }
 

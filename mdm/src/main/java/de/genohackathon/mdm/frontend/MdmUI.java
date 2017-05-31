@@ -3,6 +3,7 @@ package de.genohackathon.mdm.frontend;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.shared.ui.window.WindowMode;
 import com.vaadin.ui.*;
 import de.genohackathon.mdm.dao.DataService;
 import de.genohackathon.mdm.frontend.forms.ProjectForm;
@@ -20,37 +21,45 @@ public class MdmUI extends UI {
 
     private ProjectForm form = new ProjectForm(this);
     private Grid<Project> grid = new Grid<>(Project.class);
-    
+
+    private Window popup = form;
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
 
-        form.setVisible(false);
+        popup.center();
+        popup.setPositionY(0);
+        popup.setResizable(false);
+        popup.setClosable(false);
+        popup.setModal(true);
+        popup.setVisible(false);
 
         Button addProjectBtn = new Button("Add new customer");
         addProjectBtn.addClickListener(e -> {
             grid.asSingleSelect().clear();
             form.setProject(new Project());
+            popup.setVisible(true);
         });
 
         grid.setColumns("name", "projectLeader");
 
         final VerticalLayout layout = new VerticalLayout();
-
-        HorizontalLayout main = new HorizontalLayout(grid, form);
+        addWindow(popup);
+        HorizontalLayout main = new HorizontalLayout(grid);
         main.setSizeFull();
         grid.setSizeFull();
         main.setExpandRatio(grid, 1);
 
-        layout.addComponent(addProjectBtn);
-        layout.addComponents(main);
+        layout.addComponents(addProjectBtn, main);
 
         setContent(layout);
 
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() == null) {
-                form.setVisible(false);
+                popup.setVisible(false);
             } else {
                 form.setProject(event.getValue());
+                popup.setVisible(true);
             }
         });
         
