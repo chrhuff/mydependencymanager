@@ -1,6 +1,8 @@
 package de.genohackathon.mdm.dao;
 
 import de.genohackathon.mdm.model.DataObject;
+import de.genohackathon.mdm.model.Employee;
+import de.genohackathon.mdm.model.Project;
 import org.bson.BsonDocument;
 import org.bson.BsonObjectId;
 import org.bson.types.ObjectId;
@@ -63,10 +65,14 @@ public class DataService<T extends DataObject> {
         datastore.delete(obj);
     }
 
-    private BsonDocument getIdFilter(String id) {
+    public Datastore getDatastore(){
+        return datastore;
+    }
+
+   /* private BsonDocument getIdFilter(String id) {
         BsonDocument filter = new BsonDocument();
         BsonObjectId bsonId = new BsonObjectId(new ObjectId(id));
         filter.put("_id", bsonId);
         return filter;
-    }
+    }*/
 }

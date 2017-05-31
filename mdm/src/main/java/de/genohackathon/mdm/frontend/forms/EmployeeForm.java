@@ -8,6 +8,7 @@ import de.genohackathon.mdm.dao.DataService;
 import de.genohackathon.mdm.frontend.MdmUI;
 import de.genohackathon.mdm.frontend.views.EmployeesView;
 import de.genohackathon.mdm.model.Employee;
+import de.genohackathon.mdm.model.Project;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -82,6 +83,16 @@ public class EmployeeForm extends FormLayout {
 
     private void del() {
         if(employee.getId() != null) {
+            DataService<Project> projectDataService = new DataService<>(Project.class);
+            for(Project project : projectDataService.getDatastore().find(Project.class).field("projectLeader").equal(employee)){
+                project.setProjectLeader(null);
+                projectDataService.update(project);
+            }
+            for(Project project : projectDataService.getDatastore().find(Project.class).field("employees").hasThisOne(employee)){
+                project.getEmployees().remove(employee);
+                projectDataService.update(project);
+            }
+            ui.reloadProjects();
             this.employeeDataService.delete(employee);
             employee = new Employee();
         }
