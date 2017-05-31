@@ -81,6 +81,7 @@ public class EmployeeForm extends FormLayout {
         view.updateList();
         firstName.setValue("");
         view.closeWindow();
+        ui.reloadEmployees();
     }
 
     private void save() {
@@ -88,6 +89,7 @@ public class EmployeeForm extends FormLayout {
         setVisible(false);
         view.updateList();
         view.closeWindow();
+        ui.reloadEmployees();
     }
 
     public void setEmployee(Employee employee) {

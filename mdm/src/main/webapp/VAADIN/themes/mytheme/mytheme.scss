@@ -38,4 +38,15 @@
   .v-slot-geno-navbar {
     background-color:blue;
   }
+  
+  .v-label-mdm-title {
+    text-size:1.5em;
+    font-weight:bold;
+    color:white;
+    display:inline-block;
+  }
+  
+  .v-slot-mdm-title {
+    vertical-align:middle;
+  }
 }

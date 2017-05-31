@@ -90,7 +90,6 @@ public class ProjectsView extends VerticalLayout implements View {
         popover.setClosable(true);
         popover.setModal(true);
         popover.setVisible(true);
-        popover.setSizeUndefined();
         popover.setContent(component);
         popover.addCloseListener(e -> {
             ui.goTo("projects");
@@ -105,5 +104,9 @@ public class ProjectsView extends VerticalLayout implements View {
             ui.removeWindow(popover);
             popover = null;
         }
+    }
+
+    public void reloadEmployees() {
+        this.projectForm.reloadEmployees();
     }
 }

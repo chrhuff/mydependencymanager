@@ -40,7 +40,6 @@ public class ProjectForm extends FormLayout {
     private Project project = null;
     private final MdmUI ui;
     private final ProjectsView view;
-    Window popover;
 
     public ProjectForm(MdmUI ui, ProjectsView view) {
         this.ui = ui;
@@ -52,7 +51,7 @@ public class ProjectForm extends FormLayout {
         VerticalLayout right = new VerticalLayout(businessCase, values, channel, customerType, targetGroup, it);
         main.addComponents(left, right);
 
-        projectLeader.setItems(employeeDataService.findAll());
+        reloadEmployees();
 
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
@@ -71,6 +70,7 @@ public class ProjectForm extends FormLayout {
         view.updateList();
         view.closeWindow();
         name.setValue("");
+        ui.reloadProjects();
     }
 
     private void save() {
@@ -79,6 +79,7 @@ public class ProjectForm extends FormLayout {
         name.setValue("");
         setVisible(false);
         view.closeWindow();
+        ui.reloadProjects();
     }
 
     public void setProject(Project project) {
@@ -93,5 +94,9 @@ public class ProjectForm extends FormLayout {
         } else {
             del.setVisible(true);
         }
+    }
+
+    public void reloadEmployees() {
+        projectLeader.setItems(employeeDataService.findAll());
     }
 }

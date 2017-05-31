@@ -54,7 +54,7 @@ public class Project implements DataObject {
         if (o == null || getClass() != o.getClass()) return false;
 
         Project project = (Project) o;
-        return this.id.toString().equals(project.getId());
+        return this.id.equals(project.getId());
     }
 
     public Employee getProjectLeader() {
@@ -156,6 +156,11 @@ public class Project implements DataObject {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
