@@ -12,7 +12,6 @@ import de.genohackathon.mdm.model.Project;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.Arrays;
 
 /**
  * Created by chuff on 30.05.2017.
@@ -96,7 +95,6 @@ public class EmployeeForm extends FormLayout {
             this.employeeDataService.delete(employee);
             employee = new Employee();
         }
-        view.updateList();
         firstName.setValue("");
         view.closeWindow();
         ui.reloadEmployees();
@@ -105,7 +103,6 @@ public class EmployeeForm extends FormLayout {
     private void save() {
         this.employeeDataService.updateOrCreate(employee);
         setVisible(false);
-        view.updateList();
         view.closeWindow();
         ui.reloadEmployees();
     }
