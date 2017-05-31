@@ -40,6 +40,8 @@ public class ProjectForm extends FormLayout {
     private Project project = null;
     private final MdmUI ui;
     private final ProjectsView view;
+    private Window selectEmployee;
+    private Window selectSystems;
 
     public ProjectForm(MdmUI ui, ProjectsView view) {
         this.ui = ui;
@@ -47,6 +49,15 @@ public class ProjectForm extends FormLayout {
         HorizontalLayout main = new HorizontalLayout();
         HorizontalLayout buttons = new HorizontalLayout(save, del);
         addComponents(main, buttons);
+
+        employees.addClickListener(e->{
+            selectEmployee.setVisible(true);
+        });
+
+        it.addClickListener(e->{
+            selectSystems.setVisible(true);
+        });
+
         VerticalLayout left = new VerticalLayout(name, projectLeader, employees, startDate, endDate, resultType, budget, resources);
         VerticalLayout right = new VerticalLayout(businessCase, values, channel, customerType, targetGroup, it);
         main.addComponents(left, right);
@@ -94,6 +105,12 @@ public class ProjectForm extends FormLayout {
         } else {
             del.setVisible(true);
         }
+        selectEmployee = new SelectEmployeeForm(project);
+        selectEmployee.setVisible(false);
+        selectSystems = new SelectSystemsForm(project);
+        selectSystems.setVisible(false);
+        ui.addWindow(selectEmployee);
+        ui.addWindow(selectSystems);
     }
 
     public void reloadEmployees() {

@@ -10,6 +10,7 @@ import de.genohackathon.mdm.frontend.views.DashboardView;
 import de.genohackathon.mdm.frontend.views.DependenciesView;
 import de.genohackathon.mdm.frontend.views.EmployeesView;
 import de.genohackathon.mdm.frontend.views.ProjectsView;
+import de.genohackathon.mdm.model.Project;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -20,8 +21,8 @@ public class MdmUI extends UI {
 
     Navigator navigator;
 
-    View dashboardView = new DashboardView();
-    View employeesView = new EmployeesView(this);
+    DashboardView dashboardView = new DashboardView();
+    EmployeesView employeesView = new EmployeesView(this);
     ProjectsView projectsView = new ProjectsView(this);
     DependenciesView dependenciesView = new DependenciesView(this);
 
@@ -33,7 +34,7 @@ public class MdmUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
 
         final HorizontalLayout buttons = new HorizontalLayout();
-        
+
         Button homeButton = new Button("Start", e -> navigator.navigateTo(""));
         Button projectsButton = new Button("Projekte", e -> navigator.navigateTo("projects"));
         Button employeesButton = new Button("Mitarbeiter", e -> navigator.navigateTo("employees"));
@@ -67,11 +68,11 @@ public class MdmUI extends UI {
         setNavigator(navigator);
         setTheme("mytheme");
     }
-    
+
     public void reloadProjects() {
         dependenciesView.reloadProjects();
     }
-    
+
     public void reloadEmployees() {
         projectsView.reloadEmployees();
     }

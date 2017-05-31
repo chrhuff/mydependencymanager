@@ -29,7 +29,8 @@ public class ProjectsView extends VerticalLayout implements View {
     public ProjectsView(final MdmUI ui) {
         this.ui = ui;
         this.projectForm = new ProjectForm(ui, this);
-        
+
+
         search.addValueChangeListener(e -> updateList());
 
         Button addProjectBtn = new Button("Neues Projekt anlegen");

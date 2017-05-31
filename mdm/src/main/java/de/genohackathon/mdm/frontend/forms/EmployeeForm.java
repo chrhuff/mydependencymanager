@@ -22,7 +22,7 @@ public class EmployeeForm extends FormLayout {
     private TextField firstName = new TextField("Vorname");
     private TextField lastName = new TextField("Nachname");
     private TextField organisation = new TextField("Organisation");
-    private ListSelect<String> skills = new ListSelect<>("Fähigkeiten", Arrays.asList(
+    /*private ListSelect<String> skills = new ListSelect<>("Fähigkeiten", Arrays.asList(
             "Projektmanagment",
             "Digital Leader",
             "Scrum",
@@ -39,7 +39,8 @@ public class EmployeeForm extends FormLayout {
             "Java",
             ".NET"
 
-    ));
+    ));*/
+    private Button skills = new Button("Skills");
     private Upload avatar = new Upload("Avatar", (filename, mimetype) -> {
         try {
             return new FileOutputStream(filename);
@@ -55,6 +56,8 @@ public class EmployeeForm extends FormLayout {
     private final EmployeesView view;
     private final MdmUI ui;
 
+    private SelectSkillsForm skillsForm;
+
     public EmployeeForm(MdmUI ui, EmployeesView view) {
         this.ui = ui;
         this.view = view;
@@ -62,7 +65,11 @@ public class EmployeeForm extends FormLayout {
         setMargin(true);
         HorizontalLayout buttons = new HorizontalLayout(save,del);
         addComponents(firstName, lastName, organisation, skills, avatar, buttons);
-        
+
+        skills.addClickListener(e->{
+            skillsForm.setVisible(true);
+        });
+
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
         save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
@@ -103,5 +110,10 @@ public class EmployeeForm extends FormLayout {
         } else {
             del.setVisible(true);
         }
+
+        if(skillsForm!=null) ui.removeWindow(skillsForm);
+        skillsForm = new SelectSkillsForm(employee);
+        skillsForm.setVisible(false);
+        ui.addWindow(skillsForm);
     }
 }

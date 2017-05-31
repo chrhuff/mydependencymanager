@@ -30,6 +30,8 @@ public class Project implements DataObject {
     private String targetGroup;
     private Set<String> itSystems;
     private Set<String> values;
+    @Reference
+    private Set<Employee> employees;
 
     @Override
     public ObjectId getId() {
@@ -152,6 +154,14 @@ public class Project implements DataObject {
 
     public void setItSystems(Set<String> itSystems) {
         this.itSystems = itSystems;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
