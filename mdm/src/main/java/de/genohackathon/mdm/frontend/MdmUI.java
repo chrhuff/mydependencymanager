@@ -22,29 +22,20 @@ public class MdmUI extends UI {
     private ProjectForm form = new ProjectForm(this);
     private Grid<Project> grid = new Grid<>(Project.class);
 
-    private Window popup = form;
-
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-
-        popup.center();
-        popup.setPositionY(0);
-        popup.setResizable(false);
-        popup.setClosable(false);
-        popup.setModal(true);
-        popup.setVisible(false);
 
         Button addProjectBtn = new Button("Add new customer");
         addProjectBtn.addClickListener(e -> {
             grid.asSingleSelect().clear();
             form.setProject(new Project());
-            popup.setVisible(true);
+            form.setVisible(true);
         });
 
         grid.setColumns("name", "projectLeader");
 
         final VerticalLayout layout = new VerticalLayout();
-        addWindow(popup);
+        addWindow(form);
         HorizontalLayout main = new HorizontalLayout(grid);
         main.setSizeFull();
         grid.setSizeFull();
@@ -56,10 +47,10 @@ public class MdmUI extends UI {
 
         grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() == null) {
-                popup.setVisible(false);
+                form.setVisible(false);
             } else {
                 form.setProject(event.getValue());
-                popup.setVisible(true);
+                form.setVisible(true);
             }
         });
         

@@ -42,6 +42,12 @@ public class ProjectForm extends Window {
 
     public ProjectForm(MdmUI ui) {
         this.ui = ui;
+        center();
+        setPositionY(0);
+        setResizable(false);
+        setClosable(false);
+        setModal(true);
+        setVisible(false);
         setSizeUndefined();
         HorizontalLayout main = new HorizontalLayout();
         HorizontalLayout buttons = new HorizontalLayout(save,del);
