@@ -34,7 +34,7 @@ public class DependencyForm extends FormLayout {
     public DependencyForm(MdmUI ui, DependenciesView view) {
         this.ui = ui;
         this.view = view;
-        HorizontalLayout main = new HorizontalLayout();
+        VerticalLayout main = new VerticalLayout();
         HorizontalLayout buttons = new HorizontalLayout(save, del);
         addComponents(main, buttons);
         main.addComponents(sourceProject, targetProject, comment);
