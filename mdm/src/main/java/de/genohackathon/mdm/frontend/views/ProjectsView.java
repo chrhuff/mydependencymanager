@@ -62,10 +62,10 @@ public class ProjectsView extends VerticalLayout implements View {
         grid.getColumn("itSystems").setCaption("IT-Systeme");
         grid.getColumn("values").setCaption("Werte");
         grid.setSizeFull();
-        grid.setHeight(100, Unit.PERCENTAGE);
+        //grid.setHeight(100, Unit.PERCENTAGE);
+        grid.setHeight("600px");
         
         updateList();
-
         HorizontalLayout buttons = new HorizontalLayout(addProjectBtn,editProjectBtn,similarProjectsBtn);
 
         addComponents(buttons, search, grid);

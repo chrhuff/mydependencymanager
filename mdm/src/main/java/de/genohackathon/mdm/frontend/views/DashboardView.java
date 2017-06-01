@@ -6,6 +6,7 @@ import com.vaadin.server.ClassResource;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.VerticalLayout;
+import org.vaadin.hezamu.canvas.Canvas;
 
 /**
  * Created by chuff on 31.05.2017.
