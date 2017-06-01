@@ -50,4 +50,9 @@
   .v-slot-mdm-title {
     vertical-align:middle;
   }
+  
+  .v-app, .v-app-loading {
+    color: #000;
+    font: 400 16px/1.55 "Open Sans", sans-serif;
+  }
 }

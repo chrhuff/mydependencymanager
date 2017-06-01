@@ -1532,8 +1532,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme.v-app, .mytheme.v-app-loading {
-	font: 300 16px/1.55 "Open Sans", sans-serif;
-	color: #464646;
+	font: 400 16px/1.55 "Open Sans", sans-serif;
+	color: #000;
 	background-color: #fafafa;
 	cursor: default;
 }
@@ -12516,4 +12516,8 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-slot-mdm-title {
 	vertical-align: middle;
+}
+
+.mytheme .v-app, .mytheme .v-app-loading {
+	color: #000;
 }
