@@ -12503,11 +12503,12 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-slot-geno-navbar {
-	background-color: blue;
+	background-color: #4472c4;
 }
 
 .mytheme .v-label-mdm-title {
-	text-size: 1.5em;
+	font-size: 1.5em;
+	margin-left: 0.5em;
 	font-weight: bold;
 	color: white;
 	display: inline-block;

@@ -5,12 +5,14 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 import de.genohackathon.mdm.frontend.views.*;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.annotation.WebServlet;
-import javax.swing.*;
 
 /**
  * Created by chuff on 30.05.2017.
@@ -31,31 +33,29 @@ public class MdmUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        
+        getPage().setTitle("ProjektPartner");
 
-        final HorizontalLayout buttons = new HorizontalLayout();
+        final MenuBar menuBar = new MenuBar();
 
-        Button homeButton = new Button("Start", e -> navigator.navigateTo(""));
-        Button dashboardButton = new Button("Dashboard", e -> navigator.navigateTo("dashboard"));
-        Button projectsButton = new Button("Projekte", e -> navigator.navigateTo("projects"));
-        Button employeesButton = new Button("Mitarbeiter", e -> navigator.navigateTo("employees"));
-        Button dependenciesButton = new Button("Abhängigkeiten", e -> navigator.navigateTo("dependencies"));
+        menuBar.addItem("Start", c -> navigator.navigateTo(""));
+        menuBar.addItem("Meine Projektwelt", c -> navigator.navigateTo("dashboard"));
+        menuBar.addItem("Alle Projekte", c -> navigator.navigateTo("projects"));
+        menuBar.addItem("Mitarbeiter", c -> navigator.navigateTo("employees"));
+        menuBar.addItem("Abhängigkeiten", c -> navigator.navigateTo("dependencies"));
 
         Label title = new Label("ProjektPartner");
         title.setStyleName("mdm-title");
-        buttons.addComponents(title);
-        buttons.addComponents(homeButton);
-        buttons.addComponents(dashboardButton);
-        buttons.addComponents(projectsButton);
-        buttons.addComponents(employeesButton);
-        buttons.addComponents(dependenciesButton);
-        buttons.setMargin(false);
-        buttons.setSizeUndefined();
-        buttons.setWidth(100, Unit.PERCENTAGE);
-        buttons.addStyleName("geno-navbar");
+        
+        final VerticalLayout menu = new VerticalLayout(title, menuBar);
+        menu.setMargin(false);
+        menu.setSizeUndefined();
+        menu.setWidth(100, Unit.PERCENTAGE);
+        menu.addStyleName("geno-navbar");
 
         final VerticalLayout main = new VerticalLayout();
         main.setMargin(false);
-        final VerticalLayout verticalLayout = new VerticalLayout(buttons, main);
+        final VerticalLayout verticalLayout = new VerticalLayout(menu, main);
         verticalLayout.setMargin(false);
 
         navigator = new Navigator(this, main);
@@ -69,9 +69,9 @@ public class MdmUI extends UI {
             @Override
             public boolean beforeViewChange(ViewChangeEvent viewChangeEvent) {
                 if(StringUtils.isBlank(viewChangeEvent.getViewName())){
-                    buttons.setVisible(false);
+                    menuBar.setVisible(false);
                 }else{
-                    buttons.setVisible(true);
+                    menuBar.setVisible(true);
                 }
                 return true;
             }

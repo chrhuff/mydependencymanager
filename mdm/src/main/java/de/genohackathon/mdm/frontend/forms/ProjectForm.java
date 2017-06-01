@@ -28,7 +28,7 @@ public class ProjectForm extends FormLayout {
     private DateField endDate = new DateField("Projektende");
     private ComboBox<String> resultType = new ComboBox<>("Ergebnis-Typ", Arrays.asList("Prototyp", "Release", "Intern"));
     private Slider budget = new Slider("Budget", 0, 100);
-    private Slider resources = new Slider("Resourcen", 0, 100);
+    private Slider resources = new Slider("Ressourcen", 0, 100);
     private TextField businessCase = new TextField("Business Case");
     private ListSelect<String> values = new ListSelect<>("Genossenschaftliche Werte", Arrays.asList("Mitgliederverpflichtung", "Partnerschaftlichkeit", "Transparenz", "Solidarität", "Bodenständigkeit"));
     private ComboBox<String> channel = new ComboBox<>("Kanal", Arrays.asList("digital", "offline", "hybrid"));

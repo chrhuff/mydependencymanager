@@ -49,7 +49,19 @@ public class ProjectsView extends VerticalLayout implements View {
         });
         addProjectBtn.addClickListener(e -> ui.goTo("projects/create"));
 
-        grid.setColumns("name", "projectLeader", "startDate", "endDate", "resultType", "resources", "budget", "businessCase", "channel", "customerType", "targetGroup", "itSystems", "values");
+        grid.setColumns("name", "projectLeader", "startDate", "endDate", "values", "resultType", "resources", "budget", "businessCase", "channel", "customerType", "targetGroup", "itSystems");
+        grid.getColumn("name").setMinimumWidth(200);
+        grid.getColumn("projectLeader").setCaption("Projektleiter");
+        grid.getColumn("startDate").setCaption("Start");
+        grid.getColumn("endDate").setCaption("Ende");
+        grid.getColumn("resultType").setCaption("Ergebnis-Typ");
+        grid.getColumn("resources").setCaption("Ressourcen");
+        grid.getColumn("businessCase").setCaption("Ressourcen");
+        grid.getColumn("channel").setCaption("Kanal");
+        grid.getColumn("customerType").setCaption("Kunde");
+        grid.getColumn("targetGroup").setCaption("Zielgruppe");
+        grid.getColumn("itSystems").setCaption("IT-Systeme");
+        grid.getColumn("values").setCaption("Werte");
         grid.setSizeFull();
         
         updateList();
