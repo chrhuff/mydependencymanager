@@ -59,7 +59,7 @@ public class SelectSystemsForm extends Window {
         list.removeAllComponents();
         for(String str : systems){
             Button deleter = new Button("DEL");
-            HorizontalLayout layout = new HorizontalLayout(new Label(str),deleter);
+            HorizontalLayout layout = new HorizontalLayout(deleter,new Label(str));
             deleter.addClickListener(e->{
                 systems.remove(str);
                 updateList();

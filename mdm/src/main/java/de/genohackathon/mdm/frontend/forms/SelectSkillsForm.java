@@ -57,7 +57,7 @@ public class SelectSkillsForm extends Window {
         list.removeAllComponents();
         for(String str : skills){
             Button deleter = new Button("DEL");
-            HorizontalLayout layout = new HorizontalLayout(new Label(str),deleter);
+            HorizontalLayout layout = new HorizontalLayout(deleter,new Label(str));
             deleter.addClickListener(e->{
                 skills.remove(str);
                 updateList();

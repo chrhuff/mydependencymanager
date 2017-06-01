@@ -1,6 +1,7 @@
 package de.genohackathon.mdm.dao;
 
 import com.mongodb.MongoClient;
+import de.genohackathon.mdm.model.Project;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
@@ -19,7 +20,7 @@ public class DBConnector {
             datastore.ensureCaps();
             morphia.map();
             try {
-                datastore.ensureIndexes(true);
+                datastore.ensureIndexes();
             }catch(Exception e){
                 //every time, but works anyways
             }

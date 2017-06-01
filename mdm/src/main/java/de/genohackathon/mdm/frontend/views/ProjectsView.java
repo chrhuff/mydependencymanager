@@ -34,22 +34,29 @@ public class ProjectsView extends VerticalLayout implements View {
         search.addValueChangeListener(e -> updateList());
 
         Button addProjectBtn = new Button("Neues Projekt anlegen");
-        addProjectBtn.addClickListener(e -> ui.goTo("projects/create"));
-
-        grid.setColumns("name", "projectLeader", "startDate", "endDate", "resultType", "resources", "budget", "businessCase", "channel", "customerType", "targetGroup", "itSystems", "values");
-        grid.setSizeFull();
-        grid.asSingleSelect().addValueChangeListener(event -> {
-            Project value = event.getValue();
+        Button editProjectBtn = new Button("Projekt bearbeiten");
+        editProjectBtn.addClickListener(event -> {
+            Project value = grid.asSingleSelect().getValue();
             if (value == null) {
                 projectForm.setVisible(false);
             } else {
                 ui.goTo(String.format("projects/edit/%s", value.getId().toString()));
             }
         });
+        Button similarProjectsBtn = new Button("Ähnliche Projekte anzeigen");
+        similarProjectsBtn.addClickListener(e->{
+            ui.goTo("dashboard");
+        });
+        addProjectBtn.addClickListener(e -> ui.goTo("projects/create"));
+
+        grid.setColumns("name", "projectLeader", "startDate", "endDate", "resultType", "resources", "budget", "businessCase", "channel", "customerType", "targetGroup", "itSystems", "values");
+        grid.setSizeFull();
         
         updateList();
 
-        addComponents(addProjectBtn, search, grid);
+        HorizontalLayout buttons = new HorizontalLayout(addProjectBtn,editProjectBtn,similarProjectsBtn);
+
+        addComponents(buttons, search, grid);
     }
 
     public void updateList() {

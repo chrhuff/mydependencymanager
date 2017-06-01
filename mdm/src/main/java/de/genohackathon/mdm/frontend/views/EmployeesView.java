@@ -26,7 +26,9 @@ public class EmployeesView extends VerticalLayout implements View {
     private Grid<Employee> employees = new Grid<>(Employee.class);
     
     private final MdmUI ui;
-    
+
+    TextField search = new TextField("Suche");
+
     public EmployeesView(final MdmUI ui) {
         this.ui = ui;
         this.employeeForm = new EmployeeForm(ui, this);
@@ -44,15 +46,21 @@ public class EmployeesView extends VerticalLayout implements View {
                 ui.goTo(String.format("employees/edit/%s", value.getId().toString()));
             }
         });
-        
+
+        search.addValueChangeListener(e -> updateList());
         updateList();
         
-        addComponents(addEmployeeBtn, employees);
+        addComponents(addEmployeeBtn, search, employees);
     }
 
     public void updateList() {
-        List<Employee> employees = employeeDataService.findAll();
-        this.employees.setItems(employees);
+        List<Employee> employeesList;
+        if(StringUtils.isBlank(search.getValue())) {
+            employeesList = employeeDataService.findAll();
+        }else{
+            employeesList = employeeDataService.findFullText(search.getValue());
+        }
+        this.employees.setItems(employeesList);
     }
 
     @Override

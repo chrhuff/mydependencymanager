@@ -63,7 +63,7 @@ public class SelectEmployeeForm extends Window {
         list.removeAllComponents();
         for(Employee employee : employees){
             Button deleter = new Button("DEL");
-            HorizontalLayout layout = new HorizontalLayout(new Label(employee.toString()),deleter);
+            HorizontalLayout layout = new HorizontalLayout(deleter,new Label(employee.toString()));
             deleter.addClickListener(e->{
                 employees.remove(employee);
                 updateList();
