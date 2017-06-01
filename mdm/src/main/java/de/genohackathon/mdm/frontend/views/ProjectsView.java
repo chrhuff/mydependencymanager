@@ -56,13 +56,13 @@ public class ProjectsView extends VerticalLayout implements View {
         grid.getColumn("endDate").setCaption("Ende");
         grid.getColumn("resultType").setCaption("Ergebnis-Typ");
         grid.getColumn("resources").setCaption("Ressourcen");
-        grid.getColumn("businessCase").setCaption("Ressourcen");
         grid.getColumn("channel").setCaption("Kanal");
         grid.getColumn("customerType").setCaption("Kunde");
         grid.getColumn("targetGroup").setCaption("Zielgruppe");
         grid.getColumn("itSystems").setCaption("IT-Systeme");
         grid.getColumn("values").setCaption("Werte");
         grid.setSizeFull();
+        grid.setHeight(100, Unit.PERCENTAGE);
         
         updateList();
 
