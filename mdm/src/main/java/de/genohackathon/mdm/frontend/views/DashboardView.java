@@ -3,6 +3,7 @@ package de.genohackathon.mdm.frontend.views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ClassResource;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.VerticalLayout;
 
@@ -33,6 +34,9 @@ public class DashboardView extends VerticalLayout implements View {
 
         addComponent(canvas);*/
         Image image = new Image("", new ClassResource("/dashboard.png"));
+        image.setWidth("1250px");
+        this.setSpacing(false);
+        this.setMargin(new MarginInfo(false,true,false,true));
         addComponent(image);
         setSpacing(false);
     }

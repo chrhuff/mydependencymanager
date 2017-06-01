@@ -37,7 +37,6 @@ public class MdmUI extends UI {
         getPage().setTitle("ProjektPartner");
 
         final MenuBar menuBar = new MenuBar();
-
         menuBar.addItem("Start", c -> navigator.navigateTo(""));
         menuBar.addItem("Meine Projektwelt", c -> navigator.navigateTo("dashboard"));
         menuBar.addItem("Alle Projekte", c -> navigator.navigateTo("projects"));
@@ -55,8 +54,10 @@ public class MdmUI extends UI {
 
         final VerticalLayout main = new VerticalLayout();
         main.setMargin(false);
+        main.setSpacing(false);
         final VerticalLayout verticalLayout = new VerticalLayout(menu, main);
         verticalLayout.setMargin(false);
+        verticalLayout.setSpacing(false);
 
         navigator = new Navigator(this, main);
 
