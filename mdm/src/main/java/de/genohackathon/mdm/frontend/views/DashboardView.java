@@ -3,13 +3,8 @@ package de.genohackathon.mdm.frontend.views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.ClassResource;
-import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.VerticalLayout;
-import org.vaadin.hezamu.canvas.Canvas;
-
-import java.net.URL;
-import java.net.URLClassLoader;
 
 /**
  * Created by chuff on 31.05.2017.
@@ -39,6 +34,7 @@ public class DashboardView extends VerticalLayout implements View {
         addComponent(canvas);*/
         Image image = new Image("", new ClassResource("/dashboard.png"));
         addComponent(image);
+        setSpacing(false);
     }
 
     @Override
