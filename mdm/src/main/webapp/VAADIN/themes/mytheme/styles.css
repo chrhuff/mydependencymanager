@@ -1740,7 +1740,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 5px 9px;
 	max-height: 10em;
 	overflow: auto;
-	font-weight: 400;
+	font-weight: 500;
 }
 
 .mytheme .v-tooltip .v-errormessage h2:only-child {
@@ -1991,7 +1991,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -2084,7 +2084,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #ecf2f8;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -2128,7 +2128,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #eaf4e9;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -2169,7 +2169,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #f9f0ef;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -2492,7 +2492,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 18.5px;
 	padding: 0 9px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -2620,7 +2620,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 15.5px;
 	padding: 0 7px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -2748,7 +2748,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 22px;
 	padding: 0 10px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -3941,7 +3941,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-formlayout-contentcell .v-checkbox, .mytheme .v-formlayout-contentcell .v-radiobutton {
-	font-weight: 400;
+	font-weight: 500;
 }
 
 .mytheme .v-formlayout-contentcell  > .v-label-h2, .mytheme .v-formlayout-contentcell  > .v-label-h3, .mytheme .v-formlayout-contentcell  > .v-label-h4 {
@@ -4824,7 +4824,7 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-transition: color 140ms;
 	-moz-transition: color 140ms;
 	transition: color 140ms;
-	font-weight: 400;
+	font-weight: 500;
 	text-decoration: none;
 	border: none;
 	background: transparent;
@@ -6812,7 +6812,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	cursor: default;
 	border-radius: 4px;
@@ -6892,7 +6892,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 15px;
 	color: inherit;
-	font-weight: 400;
+	font-weight: 500;
 	
 	cursor: pointer;
 	border-radius: 0;
@@ -7142,7 +7142,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 31px;
 	padding: 0 14px;
 	
-	font-weight: 400;
+	font-weight: 500;
 	
 	cursor: default;
 	border-radius: 4px;
@@ -7291,7 +7291,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 18.5px;
 	padding: 0 9px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -7452,7 +7452,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 15.5px;
 	padding: 0 7px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -7579,7 +7579,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 15.5px;
 	padding: 0 7px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -7740,7 +7740,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 22px;
 	padding: 0 10px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -7867,7 +7867,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 22px;
 	padding: 0 10px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -8748,7 +8748,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -9116,7 +9116,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -9176,7 +9176,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -9229,7 +9229,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -9303,7 +9303,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -9504,7 +9504,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 37px;
 	padding: 0 16px;
 	color: #191919;
-	font-weight: 400;
+	font-weight: 500;
 	
 	
 	border-radius: 4px;
@@ -9673,7 +9673,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-align: center;
 	line-height: 37px;
 	font-size: 15px;
-	font-weight: 300;
+	font-weight: 400;
 	color: #696969;
 	width: auto !important;
 	overflow: hidden;
@@ -9895,7 +9895,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: 1px solid transparent;
 	line-height: 36px;
 	border-radius: 4px 4px 0 0;
-	font-weight: 400;
+	font-weight: 500;
 	-webkit-transition: background-color 160ms;
 	-moz-transition: background-color 160ms;
 	transition: background-color 160ms;
@@ -10499,7 +10499,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-calendar-header-day {
-	font-weight: 400;
+	font-weight: 500;
 	text-align: center;
 	padding: 7px 0;
 }
@@ -10608,7 +10608,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-calendar-month-day-today .v-calendar-day-number {
-	font-weight: 400;
+	font-weight: 500;
 	color: #197de1;
 	border-top: 2px solid #197de1;
 	line-height: 24px;
@@ -10798,7 +10798,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-calendar-event-caption {
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.2;
 	padding: 5px 0;
 	position: absolute;
@@ -10810,7 +10810,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-calendar-event-caption span {
-	font-weight: 300;
+	font-weight: 400;
 	white-space: nowrap;
 }
 
@@ -10943,7 +10943,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme h1, .mytheme .v-label-h1, .mytheme h2, .mytheme .v-label-h2, .mytheme h3, .mytheme .v-label-h3 {
 	line-height: 1.1;
-	font-weight: 200;
+	font-weight: 300;
 	color: #141414;
 }
 
@@ -10973,7 +10973,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme h4, .mytheme .v-label-h4 {
 	line-height: 1.1;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 14px;
 	color: #414141;
 	text-transform: uppercase;
@@ -11019,12 +11019,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-label-bold {
-	font-weight: 500;
+	font-weight: 600;
 }
 
 .mytheme .v-label-light {
-	font-weight: 200;
-	color: #7d7d7d;
+	font-weight: 300;
 }
 
 .mytheme .v-label-align-right {
@@ -11055,7 +11054,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: 2px solid #2c9720;
 	border-radius: 4px;
 	padding: 7px 19px 7px 37px;
-	font-weight: 400;
+	font-weight: 500;
 	font-size: 15px;
 }
 
@@ -11586,7 +11585,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 12px 15px;
 	background-color: #444;
 	background-color: rgba(68, 68, 68, 0.9);
-	font-weight: 400;
+	font-weight: 500;
 	line-height: 22px;
 }
 
@@ -11662,7 +11661,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-Notification.error {
 	background: #ed473b;
-	font-weight: 400;
+	font-weight: 500;
 	-webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
 	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
 	padding-right: 59px;
@@ -11730,7 +11729,7 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .v-Notification.dark {
 	background-color: #444;
 	background-color: rgba(68, 68, 68, 0.9);
-	font-weight: 400;
+	font-weight: 500;
 	line-height: 22px;
 }
 
@@ -11804,7 +11803,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-Notification.critical-error {
 	background: #ed473b;
-	font-weight: 400;
+	font-weight: 500;
 	-webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
 	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
 }
@@ -11885,7 +11884,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-Notification.success .v-Notification-caption, .mytheme .v-Notification.failure .v-Notification-caption {
 	color: #2c9720;
-	font-weight: 400;
+	font-weight: 500;
 }
 
 .mytheme .v-Notification.success .v-Notification-caption:before, .mytheme .v-Notification.failure .v-Notification-caption:before {
@@ -12110,7 +12109,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .valo-menu-item {
 	outline: none;
-	font-weight: 400;
+	font-weight: 500;
 	padding: 0 37px 0 19px;
 	cursor: pointer;
 	position: relative;
@@ -12520,4 +12519,5 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-app, .mytheme .v-app-loading {
 	color: #000;
+	font: 400 16px/1.55 "Open Sans", sans-serif;
 }
